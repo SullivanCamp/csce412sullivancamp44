@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sullivan Irons-Camp | Portfolio</title>
+    <link id="themeStylesheet" rel="stylesheet" href="StyleA.css" />
+    <script src="ToggleStyle.js" defer></script>
+    <link rel="preload" href="StyleA.css" as="style" />
+    <link rel="preload" href="StyleB.css" as="style" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="name">Sullivan Irons-Camp</div>
+          <div class="tagline">Portfolio • Projects &amp; Experiments</div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a class="active" href="portfolio.html">Portfolio</a>
+          <a href="qualifications.html">Qualifications</a>
+          <a href="service.html">Service</a>
+          <a href="genai.html">GenAI</a>
+          <button class="toggle-btn" id="styleToggleBtn" type="button">Toggle Style</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-card">
+          <h1>Portfolio</h1>
+          <p>
+            A curated set of projects I’ve built (or want to build). Each entry includes a short summary.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h2 style="margin: 0 0 10px;">What I optimize for</h2>
+          <ul class="quick-facts">
+            <li><strong>Quality:</strong> readable code + testing habits</li>
+            <li><strong>Impact:</strong> solving real problems</li>
+            <li><strong>Growth:</strong> learning new tools quickly</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Projects</h2>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Webcrawler</h3>
+            <p><strong>Description:</strong> This program takes a url input file as input and parses the provided links in the file. It does this concurrently through multithreading to efficiently parse large quantities of data.</p>
+            <p><strong>Tech:</strong> Winsock 2, TCP/IP</p>
+          </article>
+
+          <article class="card">
+            <h3>Sonar</h3>
+            <p><strong>Description:</strong> Uses a ultrasonic sensor to detect the distance of a object from the sensor. It is rotated 180 degrees and uses pythons PyGame to display a sonar like gui with the potentail objects distance being shown</p>
+            <p><strong>Tech:</strong> Arduino, Ultrasonic Sensor, Servo, PyGame</p>
+          </article>
+
+          <article class="card">
+            <h3>Aggie Shell</h3>
+            <p><strong>Description:</strong> Aggie Shell is a lightweight version of the Linux/Unix shell and maintains the key functionalities that the Linux shell possesses.</p>
+
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Future ideas</h2>
+        <div class="card">
+          <p>
+            I would like to develop a trading algorthim as it would help me gain a deeper understanding of finance, diversifying my skillset, as well as how software development works in the field of finance.
+          </p>
+          <p>
+            Useful reading:
+            <a href="https://www.investopedia.com/articles/active-trading/101014/basics-algorithmic-trading-concepts-and-examples.asp" target="_blank" rel="noopener noreferrer">Investopedia</a> •
+            <a href="https://pll.harvard.edu/subject/finance" target="_blank" rel="noopener noreferrer">Harvard</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>© <span id="year"></span> Sullivan Irons-Camp</div>
+        <div><a href="index.html">Back to Home</a></div>
+      </div>
+      <script>
+        document.getElementById("year").textContent = String(new Date().getFullYear());
+      </script>
+    </footer>
+  </body>
+</html>

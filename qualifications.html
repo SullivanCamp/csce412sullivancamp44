@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sullivan Irons-Camp</title> | Qualifications</title>
+    <link id="themeStylesheet" rel="stylesheet" href="StyleA.css" />
+    <script src="ToggleStyle.js" defer></script>
+    <link rel="preload" href="StyleA.css" as="style" />
+    <link rel="preload" href="StyleB.css" as="style" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="name">Sullivan Irons-Camp</div>
+          <div class="tagline">Qualifications • Resume &amp; Skills</div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a class="active" href="qualifications.html">Qualifications</a>
+          <a href="service.html">Service</a>
+          <a href="genai.html">GenAI</a>
+          <button class="toggle-btn" id="styleToggleBtn" type="button">Toggle Style</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-card">
+          <h1>Qualifications</h1>
+          <p>
+            Below is my resume (embedded) and a short overview of the technical skills and topics I’m most interested in.
+          </p>
+          <p>
+            Reference sites I use often:
+            <a href="https://stackoverflow.com/" target="_blank" rel="noopener noreferrer">Stack Overflow</a> •
+            <a href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer">GeeksforGeeks</a>
+          </p>
+        </div>
+
+        <div class="hero-card">
+          <h2 style="margin: 0 0 10px;">At-a-glance</h2>
+          <ul class="quick-facts">
+            <li><strong>Core strengths:</strong> Programming, Problem Solving, Communication</li>
+            <li><strong>Preferred roles:</strong> Backend, Software development, Cybersecurity</li>
+            <li><strong>Availability:</strong> I am currently available</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Resume (PDF)</h2>
+        <div class="card">
+
+          <!-- !!!!!!!!!!!!!!!!Fix Resume!!!!!!!!!!!!!! -->
+          <section class="section">
+  <h2>Resume</h2>
+ <div class="resume-frame resume-frame--large">
+  <iframe
+    src="https://drive.google.com/file/d/1LR0KyY6rVsx5F1CaBl9cV2aM0hpGAEHQ/preview"
+    title="Resume PDF"
+    frameborder="0"
+  ></iframe>
+</div>
+
+</section>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Technical skills</h2>
+        <div class="card">
+          <p><strong>Languages:</strong> Proficient in C++ and Verilog; Familiar with Python, C, and R</p>
+          <p><strong>Tools:</strong> Git, GitHub, Linux, LTSpice, MultiSim, Vivado, SMX, Oscilloscope, Arduino, Raspberry PI, GCP, AWS</p>
+          <p><strong>Concepts/Coursework:</strong> Data Structures and Algorithms, Networking, Computer Systems, Circuit Theory, Electronics</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Technical interests</h2>
+        <div class="card">
+          <p>
+            I'm deeply interested in cybersecurity as I am greatly interested in how modern systems protect their digital assets. I also have an interest in AI and ML and how they can be incorporated with cybersecurity.
+          </p>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>© <span id="year"></span> Sullivan Irons-Camp</div>
+        <div><a href="mailto:[your-email]">sullivancamp44@gmail.com</a></div>
+      </div>
+      <script>
+        document.getElementById("year").textContent = String(new Date().getFullYear());
+      </script>
+    </footer>
+  </body>
+</html>

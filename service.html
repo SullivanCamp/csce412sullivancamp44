@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sullivan Irons-Camp | Service</title>
+    <link id="themeStylesheet" rel="stylesheet" href="StyleA.css" />
+    <script src="ToggleStyle.js" defer></script>
+    <link rel="preload" href="StyleA.css" as="style" />
+    <link rel="preload" href="StyleB.css" as="style" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="name">Sullivan Irons-Camp</div>
+          <div class="tagline">Service • Community &amp; Leadership</div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="qualifications.html">Qualifications</a>
+          <a class="active" href="service.html">Service</a>
+          <a href="genai.html">GenAI</a>
+          <button class="toggle-btn" id="styleToggleBtn" type="button">Toggle Style</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-card">
+          <h1>Service</h1>
+          <p>
+            This page highlights ways I give back through volunteering, mentoring, and community involvement.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h2 style="margin: 0 0 10px;">Focus areas</h2>
+          <ul class="quick-facts">
+            <li><strong>Mentoring:</strong> Tutoring students from my old highschool, Helping peers who are struggling in class</li>
+            <li><strong>Volunteering:</strong> The Big Project, UT Health East TX Junior Volunteers</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What I’ve done</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>UT Health East Texas</h3>
+            <p>I volunteered at a hospital over summer in 2019. During this time I did everything spanning from helping patients move through the hospital to shadowing doctors.</p>
+          </article>
+
+          <article class="card">
+            <h3>The Big Project</h3>
+            <p>I will be participating next semester to help keep college station clean.</p>
+          </article>
+
+          <article class="card">
+            <h3>PTK</h3>
+            <p>During my time at TJC I participated in various projects to help make Tyler a better place</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What I want to do next</h2>
+        <div class="card">
+          <p>
+            I'd like to focus more on STEM when mentoring students at my old highschool as I myself would have wanted back in highschool. It is rather small and has little access to resources that would help students to pursue their interest in the field, so this could really help expose curious minds to STEM.
+          </p>
+          <p>
+            Inspiration:
+            <a href="https://www.volunteermatch.org/" target="_blank" rel="noopener noreferrer">VolunteerMatch</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>© <span id="year"></span> Sullivan Irons-Camp</div>
+        <div><a href="index.html">Back to Home</a></div>
+      </div>
+      <script>
+        document.getElementById("year").textContent = String(new Date().getFullYear());
+      </script>
+    </footer>
+  </body>
+</html>

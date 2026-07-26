@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prompt Archaeology | A Living Prompt Museum</title>
+
+    <link rel="preload" href="StyleA.css" as="style" />
+    <link rel="preload" href="StyleB.css" as="style" />
+
+
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(18, 26, 51, 0.72);
+        --panel2: rgba(18, 26, 51, 0.48);
+        --text: #eef2ff;
+        --muted: #b9c2ff;
+        --border: rgba(255, 255, 255, 0.14);
+        --link: #8ad0ff;
+        --good: rgba(82, 255, 173, 0.18);
+        --warn: rgba(255, 210, 98, 0.16);
+        --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+        --r: 18px;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(900px 600px at 15% 8%, #2b2a8a, transparent 62%),
+          radial-gradient(900px 600px at 88% 14%, #7a2b7a, transparent 58%),
+          radial-gradient(900px 600px at 50% 95%, #196c86, transparent 60%),
+          var(--bg);
+        line-height: 1.55;
+      }
+
+      a { color: var(--link); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        border-bottom: 1px solid var(--border);
+        background: rgba(11, 16, 32, 0.62);
+        backdrop-filter: blur(10px);
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+
+      .topbar {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(18, 26, 51, 0.35);
+      }
+
+      .brand { font-weight: 850; letter-spacing: 0.3px; }
+      .hint { color: var(--muted); font-size: 13px; }
+
+      main { padding: 18px 0 48px; }
+
+      .hero {
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 34px;
+        line-height: 1.15;
+      }
+
+      .sub {
+        margin: 0;
+        color: var(--muted);
+        max-width: 86ch;
+      }
+
+      .layout {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: 330px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 78px;
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        background: rgba(18, 26, 51, 0.55);
+        box-shadow: var(--shadow);
+        padding: 12px;
+      }
+
+      .sidebar h2 {
+        margin: 0 0 8px;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      .steps {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+
+      .step-btn {
+        width: 100%;
+        text-align: left;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.18);
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 14px;
+        cursor: pointer;
+      }
+
+      .step-btn:hover { filter: brightness(1.08); }
+      .step-btn.active {
+        background: rgba(138, 208, 255, 0.14);
+        border-color: rgba(138, 208, 255, 0.35);
+      }
+
+      .sidebar .meter {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.14);
+      }
+
+      .meter .label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.10);
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.10);
+      }
+
+      .bar > div {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, rgba(138, 208, 255, 0.9), rgba(82, 255, 173, 0.75));
+        transition: width 250ms ease;
+      }
+
+      .small { color: var(--muted); font-size: 13px; }
+
+      .content {
+        display: grid;
+        gap: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        background: var(--panel2);
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+
+      .tagrow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+
+      .tag {
+        font-size: 12px;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.18);
+        padding: 5px 10px;
+        border-radius: 999px;
+      }
+
+      .tag.good { background: var(--good); }
+      .tag.warn { background: var(--warn); }
+
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 13px;
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .box {
+        border: 1px dashed rgba(255,255,255,0.22);
+        background: rgba(0,0,0,0.18);
+        border-radius: 14px;
+        padding: 12px;
+        white-space: pre-wrap;
+      }
+
+      .lesson {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(0,0,0,0.12);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .myths {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .flip {
+        perspective: 1000px;
+      }
+
+      .flip button {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: rgba(0,0,0,0.16);
+        color: var(--text);
+        padding: 0;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .flip-inner {
+        position: relative;
+        min-height: 140px;
+        transform-style: preserve-3d;
+        transition: transform 350ms ease;
+        border-radius: 16px;
+      }
+
+      .flip.is-flipped .flip-inner {
+        transform: rotateY(180deg);
+      }
+
+      .face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        padding: 12px;
+        border-radius: 16px;
+        display: grid;
+        gap: 8px;
+        align-content: start;
+      }
+
+      .front {
+        background: rgba(255, 210, 98, 0.10);
+      }
+
+      .back {
+        background: rgba(82, 255, 173, 0.12);
+        transform: rotateY(180deg);
+      }
+
+      .face .kicker {
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
+
+      .face .title {
+        font-weight: 800;
+      }
+
+      footer {
+        margin-top: 16px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      textarea {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.22);
+        color: var(--text);
+        padding: 12px;
+        outline: none;
+        line-height: 1.35;
+        min-height: 220px;
+        resize: vertical;
+        overflow: auto;
+      }
+
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+
+      button.action {
+        border: 1px solid var(--border);
+        background: rgba(18, 26, 51, 0.6);
+        color: var(--text);
+        padding: 9px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+
+      button.action:hover { filter: brightness(1.08); }
+
+      @media (max-width: 950px) {
+        .layout { grid-template-columns: 1fr; }
+        .sidebar { position: static; top: auto; }
+        .two { grid-template-columns: 1fr; }
+        .myths { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="topbar">
+          <div class="pill">
+            <span class="brand">Prompt Archaeology</span>
+            <span class="hint">a living prompt museum</span>
+          </div>
+          <div class="pill">
+            <a href="index.html">Back to main site</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <h1>Prompt Archaeology: how prompts evolve into useful tools</h1>
+        <p class="sub">
+          You can get “an answer” with a single sentence, but you get a reliable artifact by iterating:
+          adding constraints, structure, audience, and quality checks. Explore five layers and watch the output tighten.
+        </p>
+      </section>
+
+      <section class="layout">
+        <aside class="sidebar" aria-label="Prompt layers navigation">
+          <h2>Layers</h2>
+          <ol class="steps">
+            <li><button class="step-btn active" data-target="v1">V1 — Vague request</button></li>
+            <li><button class="step-btn" data-target="v2">V2 — Constraints</button></li>
+            <li><button class="step-btn" data-target="v3">V3 — Structure</button></li>
+            <li><button class="step-btn" data-target="v4">V4 — Audience & tone</button></li>
+            <li><button class="step-btn" data-target="v5">V5 — QA pass</button></li>
+          </ol>
+
+          <div class="meter" aria-label="Prompt quality meter">
+            <div class="label">
+              <span>Prompt quality</span>
+              <strong id="meterPct">20%</strong>
+            </div>
+            <div class="bar" role="img" aria-label="Quality progress bar">
+              <div id="meterFill"></div>
+            </div>
+            <div class="small" style="margin-top: 8px;">
+              This meter updates as you explore each version.
+            </div>
+          </div>
+
+          <div class="myths" aria-label="Myth vs fact flip cards">
+            <div class="flip" tabindex="0">
+              <button type="button" aria-label="Flip card: Myth vs Fact 1">
+                <div class="flip-inner">
+                  <div class="face front">
+                    <div class="kicker">Myth</div>
+                    <div class="title">“Long prompts are always better.”</div>
+                    <div class="small">Click to flip</div>
+                  </div>
+                  <div class="face back">
+                    <div class="kicker">Fact</div>
+                    <div class="title">Clarity beats length.</div>
+                    <div class="small">Short + specific often outperforms long + messy.</div>
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            <div class="flip" tabindex="0">
+              <button type="button" aria-label="Flip card: Myth vs Fact 2">
+                <div class="flip-inner">
+                  <div class="face front">
+                    <div class="kicker">Myth</div>
+                    <div class="title">“If it sounds confident, it’s correct.”</div>
+                    <div class="small">Click to flip</div>
+                  </div>
+                  <div class="face back">
+                    <div class="kicker">Fact</div>
+                    <div class="title">Verify critical details.</div>
+                    <div class="small">Treat outputs as drafts—check sources, numbers, and constraints.</div>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <div class="content">
+          <article class="card" id="v1">
+            <h3>V1 — Vague request</h3>
+            <div class="tagrow">
+              <span class="tag warn">Low specificity</span>
+              <span class="tag warn">Generic output risk</span>
+            </div>
+
+            <div class="two">
+              <div>
+                <div class="small">Prompt</div>
+                <div class="box mono">Write a portfolio project description.</div>
+              </div>
+              <div>
+                <div class="small">Output</div>
+                <div class="box">
+I built a project that demonstrates my skills. I used different technologies and learned a lot in the process.
+The project shows my ability to solve problems and work hard. I am proud of the result and plan to keep improving it.
+                </div>
+              </div>
+            </div>
+
+            <div class="lesson">
+              Lesson: the model fills the gaps with safe, generic language when goals and context are missing.
+            </div>
+          </article>
+
+          <article class="card" id="v2">
+            <h3>V2 — Add constraints</h3>
+            <div class="tagrow">
+              <span class="tag good">Constraints added</span>
+              <span class="tag good">More concrete</span>
+            </div>
+
+            <div class="two">
+              <div>
+                <div class="small">Prompt</div>
+                <div class="box mono">Write a project description in 3–4 sentences. Include: problem, approach, tools used, and a measurable outcome. Keep it recruiter-friendly.</div>
+              </div>
+              <div>
+                <div class="small">Output</div>
+                <div class="box">
+I built a web portfolio to present my work clearly to recruiters and teammates. I designed five pages with consistent navigation and implemented a JavaScript-based style toggle that switches between two full layouts. I used HTML, CSS, and JavaScript with clean structure and version control throughout development. The result is a fast, readable site that communicates projects, skills, and service in under two minutes of browsing.
+                </div>
+              </div>
+            </div>
+
+            <div class="lesson">
+              Lesson: constraints force the output into a useful shape and reduce “resume-fluff.”
+            </div>
+          </article>
+
+          <article class="card" id="v3">
+            <h3>V3 — Add structure</h3>
+            <div class="tagrow">
+              <span class="tag good">Scannable format</span>
+              <span class="tag good">Better hierarchy</span>
+            </div>
+
+            <div class="two">
+              <div>
+                <div class="small">Prompt</div>
+                <div class="box mono">Write a project entry with headings: Overview, What I built, Technical highlights, Impact. Use bullet points under highlights. Keep it concise.</div>
+              </div>
+              <div>
+                <div class="small">Output</div>
+                <div class="box">
+Overview
+A personal portfolio site designed for quick recruiter scanning and a strong first impression.
+
+What I built
+Five distinct pages with consistent navigation, plus a style toggle that switches between two complete layouts.
+
+Technical highlights
+- Single HTML file per page; shared components via consistent markup patterns
+- Two independent CSS designs (layout change, not just color changes)
+- JavaScript toggler with persistent state across pages
+
+Impact
+A professional site that communicates skills and projects quickly and cleanly without external libraries.
+                </div>
+              </div>
+            </div>
+
+            <div class="lesson">
+              Lesson: structure turns a blob of text into something a human can skim.
+            </div>
+          </article>
+
+          <article class="card" id="v4">
+            <h3>V4 — Add audience and tone</h3>
+            <div class="tagrow">
+              <span class="tag good">Audience specified</span>
+              <span class="tag good">Tone tuned</span>
+            </div>
+
+            <div class="two">
+              <div>
+                <div class="small">Prompt</div>
+                <div class="box mono">Same as V3, but write for a recruiter and a future teammate. Tone: confident, precise, no hype. Use active voice and avoid vague words like “things” and “stuff.”</div>
+              </div>
+              <div>
+                <div class="small">Output</div>
+                <div class="box">
+Overview
+A recruiter-friendly portfolio site that presents my work clearly and reflects how I collaborate and communicate.
+
+What I built
+A five-page site built with HTML/CSS/JavaScript, featuring a style toggle that switches between two full layouts while keeping identical HTML.
+
+Technical highlights
+- Layout-first redesign: two CSS files with different grid systems and navigation placement
+- Clean, consistent file organization and naming conventions
+- JavaScript toggle with local persistence to keep the experience consistent across pages
+
+Impact
+A polished site that communicates skills quickly, demonstrates attention to detail, and showcases front-end fundamentals without templates.
+                </div>
+              </div>
+            </div>
+
+            <div class="lesson">
+              Lesson: specifying audience and tone reduces filler and improves trust.
+            </div>
+          </article>
+
+          <article class="card" id="v5">
+            <h3>V5 — Quality assurance pass</h3>
+            <div class="tagrow">
+              <span class="tag good">Self-check added</span>
+              <span class="tag good">Higher reliability</span>
+            </div>
+
+            <div class="two">
+              <div>
+                <div class="small">Prompt</div>
+                <div class="box mono">Rewrite V4 output with a QA pass: remove redundancy, tighten phrasing, ensure each section adds new information, and keep the entire entry under 120 words.</div>
+              </div>
+              <div>
+                <div class="small">Output</div>
+                <div class="box">
+Overview
+A recruiter-ready portfolio site that’s fast to skim and easy to navigate.
+
+What I built
+A five-page HTML/CSS/JS site with a style toggle that swaps between two complete layouts while preserving identical HTML.
+
+Technical highlights
+- Two independent CSS designs with different layout systems
+- Consistent structure and naming for maintainable pages
+- Persistent style selection with JavaScript
+
+Impact
+Demonstrates front-end fundamentals, attention to detail, and clear communication—without templates or libraries.
+                </div>
+              </div>
+            </div>
+
+            <div class="lesson">
+              Lesson: adding a QA instruction is the fastest way to improve clarity and reduce repetition.
+            </div>
+          </article>
+
+          <article class="card" id="final-prompt">
+            <h3>Final prompt used (required)</h3>
+            <p class="small" style="margin: 0 0 10px;">
+              This textarea contains the exact prompt used to produce this GenAI page. It scrolls if needed.
+            </p>
+
+            <textarea aria-label="Final prompt used for this GenAI page" class="mono">
+Create a single HTML page named genai.html with inline CSS only (no external stylesheets).
+Theme: “Prompt Archaeology: a living prompt museum.”
+Include five sections (V1–V5) showing how a prompt evolves for writing a recruiter-friendly portfolio project description.
+
+Each version must show:
+1) Prompt text
+2) Model output text
+3) A one-line lesson explaining the improvement
+
+Design requirements:
+- Visually engaging dark theme with card layout
+- Sticky header and a sidebar navigation that smooth-scrolls to each version
+- A “Prompt quality” progress bar that updates as the user selects versions
+- Add two “Myth vs Fact” flip cards
+- Use only vanilla HTML/CSS/JS (no libraries)
+
+Include a final required text area containing the prompt above and a “Copy prompt” button.
+Make everything fully functional with no placeholders.
+            </textarea>
+
+            <div class="actions">
+              <div class="small">Tip: Keep this prompt accurate; it documents your process.</div>
+              <button class="action" type="button" id="copyPrompt">Copy prompt</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="wrap footer">
+        <div class="small">
+          © <span id="year"></span> • Built with HTML/CSS/JS only • Inline CSS per course requirement
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      const steps = Array.from(document.querySelectorAll(".step-btn"));
+      const meterFill = document.getElementById("meterFill");
+      const meterPct = document.getElementById("meterPct");
+
+      const quality = {
+        v1: 20,
+        v2: 40,
+        v3: 60,
+        v4: 80,
+        v5: 100,
+      };
+
+      function setActive(targetId) {
+        steps.forEach((b) => b.classList.toggle("active", b.dataset.target === targetId));
+        const pct = quality[targetId] ?? 20;
+        meterFill.style.width = pct + "%";
+        meterPct.textContent = pct + "%";
+      }
+
+      steps.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-target");
+          const target = document.getElementById(id);
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          setActive(id);
+        });
+      });
+
+      // Flip cards
+      const flips = Array.from(document.querySelectorAll(".flip"));
+      flips.forEach((f) => {
+        const button = f.querySelector("button");
+        button.addEventListener("click", () => f.classList.toggle("is-flipped"));
+        f.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            f.classList.toggle("is-flipped");
+          }
+        });
+      });
+
+      // Copy prompt
+      const copyBtn = document.getElementById("copyPrompt");
+      const promptBox = document.querySelector("textarea[aria-label='Final prompt used for this GenAI page']");
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(promptBox.value);
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => (copyBtn.textContent = "Copy prompt"), 1200);
+        } catch (e) {
+          copyBtn.textContent = "Copy failed";
+          setTimeout(() => (copyBtn.textContent = "Copy prompt"), 1200);
+        }
+      });
+
+      // Initialize
+      setActive("v1");
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sullivan Irons-Camp | Professional Website</title>
+    <link id="themeStylesheet" rel="stylesheet" href="StyleA.css" />
+    <script src="ToggleStyle.js" defer></script>
+    <link rel="preload" href="StyleA.css" as="style" />
+    <link rel="preload" href="StyleB.css" as="style" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="name">Sullivan Irons-Camp</div>
+          <div class="tagline">Computer Engineering • Texas A&amp;M University</div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="active" href="index.html">Home</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="qualifications.html">Qualifications</a>
+          <a href="service.html">Service</a>
+          <a href="genai.html">GenAI</a>
+          <button class="toggle-btn" id="styleToggleBtn" type="button" aria-label="Toggle site style">
+            Toggle Style
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-card">
+          <h1>Hi, I’m Sullivan Irons-Camp.</h1>
+          <p>
+            I’m a computer engineering student focused on Software development and hardware desing.
+            This site is a quick snapshot of my work, skills, and what I’d bring to a team.
+          </p>
+
+          <div class="badges" aria-label="Highlights">
+            <span class="badge">Programming</span>
+            <span class="badge">Problem Solving</span>
+            <span class="badge">Professional Communication</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h2 style="margin: 0 0 10px;">Quick facts</h2>
+          <ul class="quick-facts">
+            <li><strong>Currently:</strong> Working on multithreaded webcrawler.</li>
+            <li><strong>Interested in:</strong> Hardware, Cybersecurity, AIs role in hardware</li>
+            <li><strong>Contact:</strong> sullivancamp44@gmail.com</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Featured work (preview)</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Multithreaded Web Crawler</h3>
+            <p> Parses given url file and returns various information about the site. Can run ~800 threads concurrently.</p>
+          </article>
+          <article class="card">
+            <h3>Sonar</h3>
+            <p>Makes use of arduino, servo, and ultrasonic sensor to scan a 180 degree area and updates a sonar like gui to show then angle and position of a object.</p>
+          </article>
+          <article class="card">
+            <h3>Aggie Shell</h3>
+            <p>Implemented a lightweight linux style shell that has many of the functionalities of the linux shell.</p>
+          </article>
+        </div>
+        <p style="margin: 0;">
+          See more on the <a href="portfolio.html">Portfolio page</a>.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>About</h2>
+        <div class="card">
+          <p>
+            I enjoy building reliable, readable software. I like working in teams that value
+            learning and collaboration. Outside of school, I’m involved in stem to stocks, so I am interested in mainting a diverse skill set.
+          </p>
+          <p>
+            External references I follow and use:
+            <a href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>,
+            <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a>,
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">Linkedin</a>.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Next steps</h2>
+        <div class="card">
+          <p>
+            If you’re a recruiter or teammate and want to connect, the best place to start is
+            <a href="qualifications.html">Qualifications</a> (resume + skills), then <a href="portfolio.html">Portfolio</a>.
+          </p>
+          <p>
+            Optional profiles:
+            <a href="https://www.linkedin.com/in/sullivan-irons-camp-0573192ab" target="_blank" rel="noopener noreferrer">LinkedIn</a> and
+            <a href="https://github.com/SullivanCamp" target="_blank" rel="noopener noreferrer">GitHub</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>© <span id="year"></span> Sullivan Irons-Camp</div>
+        <div>
+          <a href="mailto:sullivancamp44@gmail.com">Email</a> •
+          <a href="https://www.tamu.edu/" target="_blank" rel="noopener noreferrer">Texas A&amp;M</a>
+        </div>
+      </div>
+      <script>
+        document.getElementById("year").textContent = String(new Date().getFullYear());
+      </script>
+    </footer>
+  </body>
+</html>
