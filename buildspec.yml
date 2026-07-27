@@ -7,7 +7,7 @@ version: 0.2
 # (CloudFront's default TTL).
 #
 # Required environment variable on the CodeBuild project:
-#   DISTRIBUTION_ID = your CloudFront distribution ID (e.g. E2XVES8SYTSMS)
+#   DISTRIBUTION_ID = your CloudFront distribution ID
 #
 # Required IAM permissions on the CodeBuild service role:
 #   cloudfront:CreateInvalidation
