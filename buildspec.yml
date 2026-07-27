@@ -1,0 +1,24 @@
+version: 0.2
+
+# CSCE 412 - Project 5
+# Final stage of the CodePipeline. Runs AFTER the site files have been deployed
+# to S3. Its only job is to purge the CloudFront edge caches so the new version
+# of the site is visible immediately instead of up to 24 hours later
+# (CloudFront's default TTL).
+#
+# Required environment variable on the CodeBuild project:
+#   DISTRIBUTION_ID = your CloudFront distribution ID (e.g. E2XVES8SYTSMS)
+#
+# Required IAM permissions on the CodeBuild service role:
+#   cloudfront:CreateInvalidation
+#   cloudfront:GetInvalidation
+
+phases:
+  build:
+    commands:
+      - echo "Invalidating CloudFront distribution $DISTRIBUTION_ID"
+      - INVALIDATION_ID=$(aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*" --query 'Invalidation.Id' --output text)
+      - echo "Invalidation submitted with ID $INVALIDATION_ID"
+      - echo "Waiting for invalidation to complete..."
+      - aws cloudfront wait invalidation-completed --distribution-id "$DISTRIBUTION_ID" --id "$INVALIDATION_ID"
+      - echo "Invalidation complete. Site is live with the latest changes."
